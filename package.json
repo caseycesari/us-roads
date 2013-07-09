@@ -1,0 +1,25 @@
+{
+  "name": "us-roads",
+  "version": "0.0.1",
+  "description": "Roll your own TopoJSON from TIGER/Lines.",
+  "keywords": [
+    "topojson",
+    "geojson",
+    "shapefile"
+  ],
+  "author": {
+    "name": "Casey Thomas",
+    "url": "http://github.com/caseypt"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/caseypt/us-roads.git"
+  },
+  "devDependencies": {
+    "canvas": "1",
+    "d3": "3",
+    "queue-async": "1",
+    "shapefile": "0.1",
+    "topojson": "1"
+  }
+}
