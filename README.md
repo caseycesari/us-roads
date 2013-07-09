@@ -2,9 +2,9 @@
 
 ![us-roads](http://caseypthomas.org/img/us-roads.png)
 
-A fork of [Mike Bostock](https://github.com/mbostock)'s awesome [us-rivers](https://github.com/mbostock/us-rivers) project, but for roads. 
+A fork of [Mike Bostock](https://github.com/mbostock)'s awesome [us-rivers](https://github.com/mbostock/us-rivers) project, but adapted for 2012 [TIGER/Line](http://www.census.gov/geo/maps-data/data/tiger-line.html) roads.
 
-Uses 2012 [TIGER/Line](http://www.census.gov/geo/maps-data/data/tiger-line.html) road data. Inspired by and a re-creation of [Fathom Information Design](http://fathom.info/)'s [All Streets](http://fathom.info/allstreets) print.
+Inspired by and a re-creation of [Fathom Information Design](http://fathom.info/)'s [All Streets](http://fathom.info/allstreets) print.
 
 To install:
 
