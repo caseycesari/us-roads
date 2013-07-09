@@ -1,0 +1,64 @@
+#!/usr/bin/env node
+
+var fs = require("fs"),
+    d3 = require("d3"),
+    shapefile = require("shapefile"),
+    dbf = require("../node_modules/shapefile/dbf"),
+    Canvas = require("canvas"),
+    queue = require("queue-async");
+
+var states = "ak al ar az ca co ct dc de fl ga hi ia id il in ks ky la ma md me mi mn mo ms mt nc nd ne nh nj nm nv ny oh ok or pa ri sc sd tn tx ut va vt wa wi wv wy".split(/\s+/),
+    file = fs.createWriteStream(process.argv[2]);
+
+var scale = 2,
+    width = 960 * scale,
+    height = 600 * scale;
+
+var canvas = new Canvas(width, height),
+    context = canvas.getContext("2d");
+
+var projection = d3.geo.albers()
+    .scale(1280 * scale)
+    .translate([width * 0.5, height * 0.5])
+    .precision(0);
+
+var path = d3.geo.path()
+    .projection(projection)
+    .context(context);
+
+var q = queue(1);
+states.forEach(function(r) { q.defer(renderState, r); });
+q.await(output);
+
+function renderState(state, callback) {
+  console.log("loading attributes for " + state);
+  var orderById = {};
+
+  context.strokeStyle = "#111";
+  context.lineWidth = 0.1;
+  context.lineCap = "round";
+  context.lineJoin = "round";
+
+  dbf.readStream("shp/" + state + "-roads.dbf")
+      .on("error", callback)
+      .on("end", readShapefile);
+
+  function readShapefile() {
+    console.log("rendering geometry for " +  state);
+    shapefile.readStream("shp/" + state + "-roads.shp")
+        .on("feature", function(feature) {
+          context.lineWidth = 0.1;
+          context.beginPath();
+          path(feature);
+          context.stroke();
+        })
+        .on("error", callback)
+        .on("end", function() { callback(null); });
+  }
+}
+
+function output(error) {
+  if (error) throw error;
+  console.log("generating " + process.argv[2]);
+  canvas.pngStream().pipe(file);
+}
