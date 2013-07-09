@@ -9,7 +9,7 @@ Uses 2012 [TIGER/Line](http://www.census.gov/geo/maps-data/data/tiger-line.html)
 To install:
 
 ```bash
-brew install p7zip cairo pixman optipng
+brew install p7zip cairo pixman optipng gdal
 npm install
 ```
 
