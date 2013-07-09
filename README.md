@@ -1,6 +1,6 @@
 # U.S. Roads
 
-![us-roads]()
+![us-roads](http://caseypthomas.org/img/us-roads.png)
 
 A fork of [Mike Bostock](https://github.com/mbostock)'s awesome [us-rivers](https://github.com/mbostock/us-rivers) project, but for roads. 
 
