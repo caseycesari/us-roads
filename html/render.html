@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+canvas {
+  border: solid 1px #ccc;
+}
+
+</style>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="http://d3js.org/queue.v1.min.js"></script>
+<script>
+
+var scale = 2,
+    width = 960 * scale,
+    height = 500 * scale;
+
+var projection = d3.geo.albers()
+    .scale(1100 * scale)
+    .translate([width / 2, height / 2])
+    .precision(0);
+
+var canvas = d3.select("body").append("canvas")
+    .attr("width", width)
+    .attr("height", height);
+
+var context = canvas.node().getContext("2d");
+
+context.globalAlpha = 0.25;
+context.strokeStyle = "#000";
+context.lineWidth = 0.25;
+context.lineJoin = "round";
+
+var path = d3.geo.path()
+    .projection(projection)
+    .context(context);
+
+var q = queue(1);
+var states = "ak al ar az ca co ct dc de fl ga hi ia id il in ks ky la ma md me mi mn mo ms mt nc nd ne nh nj nm nv ny oh ok or pa ri sc sd tn tx ut va vt wa wi wv wy".split(/\s+/);
+states.forEach(function(state) { q.defer(renderState, state); });
+q.await(function() { console.log("done!"); });
+
+function renderState(state, callback) {
+  console.log("loading " + state);
+  d3.json("../topo/" + state + "-roads.json", function(error, topology) {
+    console.log("rendering " + state);
+    context.beginPath();
+    path(topojson.feature(topology, topology.objects.mesh));
+    context.stroke();
+    setTimeout(callback, 1000); // a brief delay to allow redraw
+  });
+}
+
+</script>
