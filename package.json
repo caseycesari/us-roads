@@ -1,7 +1,7 @@
 {
   "name": "us-roads",
   "version": "0.0.1",
-  "description": "Roll your own TopoJSON from TIGER/Lines.",
+  "description": "Roll your own TopoJSON from TIGER/Line roads.",
   "keywords": [
     "topojson",
     "geojson",
