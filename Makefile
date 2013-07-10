@@ -19,7 +19,7 @@ shp/%-roads.shp:
 		grep $* states.csv | cut -d \, -f 2 > temp
 		while read line; do make shp/$$line.shp; done < "temp";
 		@echo "merging county shapefiles"
-		while read line; do if [ ! -f ./shp/$*-roads.shp ]; then ogr2ogr -f "ESRI Shapefile" -simplify .1 ./shp/$*-roads.shp ./shp/$$line.shp; else ogr2ogr -f "ESRI Shapefile" -simplify .1 -update -append ./shp/$*-roads.shp ./shp/$$line.shp -nln $*-roads; fi; done < "temp";
+		while read line; do if [ ! -f ./shp/$*-roads.shp ]; then ogr2ogr -f "ESRI Shapefile" ./shp/$*-roads.shp ./shp/$$line.shp; else ogr2ogr -f "ESRI Shapefile" -update -append ./shp/$*-roads.shp ./shp/$$line.shp -nln $*-roads; fi; done < "temp";
 		rm temp
 
 png/us-roads.png: $(addsuffix -roads.shp,$(addprefix shp/,$(STATES))) bin/rasterize
