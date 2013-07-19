@@ -12,7 +12,7 @@ zip/%.zip:
 
 shp/%.shp: zip/%.zip
 		mkdir -p $(dir $@)
-		tar -xf zip/$*.zip -C shp/
+		unzip zip/$*.zip -d shp/
 
 shp/%-roads.shp:
 		mkdir -p $(dir $@)
