@@ -1,6 +1,6 @@
 # U.S. Roads
 
-![us-roads](http://caseypthomas.org/img/us-roads.png)
+![us-roads](http://cpt.ph/assets/img/posts/us-roads-full.png)
 
 A fork of [Mike Bostock](https://github.com/mbostock)'s awesome [us-rivers](https://github.com/mbostock/us-rivers) project, but adapted for 2012 [TIGER/Line](http://www.census.gov/geo/maps-data/data/tiger-line.html) roads.
 
