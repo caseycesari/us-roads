@@ -32,5 +32,5 @@ make topo/pa.json
 Make a Shapefile for a specific state:
 
 ```bash
-make shp/wa.json
+make shp/wa.shp
 ```
