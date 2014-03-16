@@ -26,7 +26,7 @@ To make the above PNG for the entire United States, type `make`.
 Make a TopoJSON file for a specific state:
 
 ```bash
-make topo/pa.json
+make topo/pa-roads.json
 ```
 
 Make a Shapefile for a specific state:
